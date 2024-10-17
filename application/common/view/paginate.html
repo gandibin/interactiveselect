@@ -1,0 +1,7 @@
+<ul class="pagination">
+    {volist name="render" id="page"}
+    <li class="{if condition="$page.active"}active{/if}">
+        <a href="{$page.url}">{$page.text}</a>
+    </li>
+    {/volist}
+</ul>

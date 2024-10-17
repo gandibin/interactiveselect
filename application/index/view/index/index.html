@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minipc 列表</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table, th, td {
+            border: 1px solid black;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .pagination {
+            margin-top: 20px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <h1>Minipc 产品列表</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Product Name</th>
+                <th>CPU Brand</th>
+                <th>Main Chip</th>
+                <th>Brand</th>
+                <th>Clock Speed</th>
+                <th>Core Quantity</th>
+                <th>CPU</th>
+                <th>RAM</th>
+                <th>ROM</th>
+                <th>GPU</th>
+                <th>Communicate</th>
+                <th>Operating Environment</th>
+                <th>Other Interface</th>
+                <th>NPU</th>
+                <th>Ethernet Port</th>
+                <th>Camera</th>
+                <th>Graphic Port</th>
+                <th>Replace</th>
+                <th>Link</th>
+                <th>Format Link</th>
+                <th>Link ID</th>
+                <th>Price Check</th>
+                <th>Type</th>
+                <th>Remark</th>
+            </tr>
+        </thead>
+        <tbody>
+            {volist name="minipcData" id="item"}
+            <tr>
+                <td>{$item.id}</td>
+                <td>{$item.product_name}</td>
+                <td>{$item.CPU_brand}</td>
+                <td>{$item.main_chip}</td>
+                <td>{$item.brand}</td>
+                <td>{$item.clock_speed}</td>
+                <td>{$item.core_quantity}</td>
+                <td>{$item.CPU}</td>
+                <td>{$item.ram}</td>
+                <td>{$item.rom}</td>
+                <td>{$item.GPU}</td>
+                <td>{$item.communicate}</td>
+                <td>{$item.operating_environment}</td>
+                <td>{$item.other_interface}</td>
+                <td>{$item.NPU}</td>
+                <td>{$item.ethernet_port}</td>
+                <td>{$item.camera}</td>
+                <td>{$item.graphic_port}</td>
+                <td>{$item.replace}</td>
+                <td>{$item.link}</td>
+                <td>{$item.format_link}</td>
+                <td>{$item.link_id}</td>
+                <td>{$item.price_check}</td>
+                <td>{$item.type}</td>
+                <td>{$item.remark}</td>
+            </tr>
+            {/volist}
+        </tbody>
+    </table>
+
+    <!-- 分页导航 -->
+    <div class="pagination">
+        {$paginationLinks|raw}
+    </div>
+</body>
+</html>
