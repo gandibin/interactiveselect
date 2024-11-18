@@ -23,7 +23,27 @@
             margin-top: 20px;
             text-align: center;
         }
+
+        ul {
+            list-style: none; /* Remove bullet points */
+            padding: 0;
+            margin: 0;
+            display: flex; /* Make list items flex container */
+        }
+
+        li {
+            margin-right: 10px; /* Add spacing between list items */
+        }
+
+        /* Hide additional columns initially */
+        .more-column {
+            display: none;
+        }
     </style>
+
+ <!-- Include jQuery -->
+ <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
 </head>
 <body>
     <h1>Minipc 产品列表</h1>
@@ -41,20 +61,22 @@
                 <th>RAM</th>
                 <th>ROM</th>
                 <th>GPU</th>
-                <th>Communicate</th>
-                <th>Operating Environment</th>
-                <th>Other Interface</th>
-                <th>NPU</th>
-                <th>Ethernet Port</th>
-                <th>Camera</th>
-                <th>Graphic Port</th>
-                <th>Replace</th>
-                <th>Link</th>
-                <th>Format Link</th>
-                <th>Link ID</th>
-                <th>Price Check</th>
-                <th>Type</th>
-                <th>Remark</th>
+                
+                <!-- More columns initially hidden -->
+                <th class="more-column">Communicate</th>
+                <th class="more-column">Operating Environment</th>
+                <th class="more-column">Other Interface</th>
+                <th class="more-column">NPU</th>
+                <th class="more-column">Ethernet Port</th>
+                <th class="more-column">Camera</th>
+                <th class="more-column">Graphic Port</th>
+
+                <th class="more-column">Format Link</th>
+
+                <th class="more-column">Type</th>
+                <th class="more-column">Remark</th>
+
+                <th>show more specification</th>
             </tr>
         </thead>
         <tbody>
@@ -71,28 +93,48 @@
                 <td>{$item.ram}</td>
                 <td>{$item.rom}</td>
                 <td>{$item.GPU}</td>
-                <td>{$item.communicate}</td>
-                <td>{$item.operating_environment}</td>
-                <td>{$item.other_interface}</td>
-                <td>{$item.NPU}</td>
-                <td>{$item.ethernet_port}</td>
-                <td>{$item.camera}</td>
-                <td>{$item.graphic_port}</td>
-                <td>{$item.replace}</td>
-                <td>{$item.link}</td>
-                <td>{$item.format_link}</td>
-                <td>{$item.link_id}</td>
-                <td>{$item.price_check}</td>
-                <td>{$item.type}</td>
-                <td>{$item.remark}</td>
+                
+                <!-- More columns initially hidden -->
+                <td class="more-column">{$item.communicate}</td>
+                <td class="more-column">{$item.operating_environment}</td>
+                <td class="more-column">{$item.other_interface}</td>
+                <td class="more-column">{$item.NPU}</td>
+                <td class="more-column">{$item.ethernet_port}</td>
+                <td class="more-column">{$item.camera}</td>
+                <td class="more-column">{$item.graphic_port}</td>
+
+                <td class="more-column"><a href="{$item.format_link}" target="_blank"> product link </a></td>
+                
+
+                <td class="more-column">{$item.type}</td>
+                <td class="more-column">{$item.remark}</td>
+                <td><button class="toggleMoreBtn">More>></button></td>
             </tr>
             {/volist}
         </tbody>
     </table>
 
+    
+
     <!-- 分页导航 -->
     <div class="pagination">
         {$paginationLinks|raw}
     </div>
+
+    <script>
+        // 使用 jQuery 切换列的可见性
+        $(document).ready(function(){
+            $('.toggleMoreBtn').on('click', function() {
+                // 切换所有带有 .more-column 的列的显示状态
+                $('.more-column').toggle();
+    
+                // 获取当前按钮的状态（是 More>> 还是 Less<<）
+                var newText = $(this).text() === 'More>>' ? 'Less<<' : 'More>>';
+    
+                // 更新所有带有 .toggleMoreBtn 类的按钮文本
+                $('.toggleMoreBtn').text(newText);
+            });
+        });
+    </script>
 </body>
 </html>
